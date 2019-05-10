@@ -1,12 +1,30 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
     <head>
-        {% load static %}
-        <link rel="stylesheet" href="{% static 'css/davey_main.css' %}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{% static 'davey_main/style.css'  %}" type= text/css>
         <body>
-            <!--need to make login/logout inline-->
-            <h3 style = "text-align:right";><a href="login.html">login</a><h4>|</h4><a href="logout.html">logout</a></h3>
-            <img class="crop" src= "C:\Users\ah0028\projects\technician_app\davey_main\static\images\davey_logo.png" alt= "Plan"></img>
+            <img src= "{% static 'davey_main\images\davey_logo.jpg' %}">
+            <!--need to make login/logout inline
+            <div class="topnav">
+                <a>STLWest 135831</a>|
+                <a href="login/">Login</a> |
+                <a href="logout/">Logout</a>|
+                <a href="about/">About</a>
+            </div>
+        -->
+            <ul class="nav justify-content-end">
+                <li class="nav-item">
+                  <a class="nav-link active" href="login/">Login</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="logout/">Logout</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="about/">About</a>
+                </li>
+            </ul>
         </body>
     </head>
 </html>

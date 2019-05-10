@@ -6,4 +6,10 @@ def home(request):
     return render(request, 'davey_main/home.html')
 
 def about(request):
-    return HttpResponse('<h1>Davey About</h1>')
+    return render(request, 'davey_main/about.html')
+
+def login(request):
+    return render(request, 'davey_main/login.html')
+
+def logout(request):
+    return render(request, 'davey_main/logout.html')
