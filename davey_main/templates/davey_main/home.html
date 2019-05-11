@@ -3,18 +3,27 @@
 <html>
     <head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="{% static 'davey_main/style.css'  %}" type= text/css>
+        <style>
+        html {
+          background-color: darkseagreen;
+        }
+
+        .card-deck-wrapper {
+          
+        }
+
+      
+        </style>
         <body>
-            <img src= "{% static 'davey_main\images\davey_logo.jpg' %}">
-            <!--need to make login/logout inline
-            <div class="topnav">
-                <a>STLWest 135831</a>|
-                <a href="login/">Login</a> |
-                <a href="logout/">Logout</a>|
-                <a href="about/">About</a>
-            </div>
-        -->
-            <ul class="nav justify-content-end">
+      <div class="container">
+  <div class="row">
+      <div class="col">
+        <div class="float-left">
+        <img src= "{% static 'davey_main\images\davey_logo.jpg' %}">
+      </div>
+      </div>
+      <div class="col">
+           <ul class="nav justify-content-end">
                 <li class="nav-item">
                   <a class="nav-link active" href="login/">Login</a>
                 </li>
@@ -24,7 +33,93 @@
                 <li class="nav-item">
                   <a class="nav-link" href="about/">About</a>
                 </li>
-            </ul>
+              </ul>
+              
+      </div>
+      
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row"></div>
+    </div>
+
+      <div class="card-deck-wrapper">
+          <div class="card-deck">
+          
+          <!-- Card 1 -->
+          <div class="card">
+          <div class="card-header">My Orders</div>
+          <div class="card-body">
+          <p class="card-text">View my open/closed orders</p>
+          <a href="#" class="card-link">Tickets</a>
+          <a href="#" class="card-link">Client Search</a>
+          </div>
+          </div>
+          
+          <!-- Card 2 -->
+          <div class="card">
+          <div class="card-header">Routing</div>
+          <div class="card-body">
+          <p class="card-text">Show my routes</p>
+          <a href="#" class="card-link">Show</a>
+          </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="card">
+              <div class="card-header">Mixing Calculator</div>
+              <div class="card-body">
+              <p class="card-text">Calculate product amounts</p>
+              <a href="#" class="card-link">Calculate</a>
+              </div>
+              </div>
+          
+          </div>
+          </div>
+
+          <div class="container">
+            <div class="row">'</div>
+          </div>
+          
+
+          <div class="card-deck-wrapper">
+              <div class="card-deck">
+              
+              <!-- Card 1 -->
+              <div class="card">
+              <div class="card-header">Labels</div>
+              <div class="card-body">
+              <p class="card-text">View EPA Lables of common products</p>
+              <a href="#" class="card-link">View</a>
+              </div>
+              </div>
+              
+              <!-- Card 2 -->
+              <div class="card">
+              <div class="card-header">Manual</div>
+              <div class="card-body">
+              <p class="card-text">View 2019 Plant Health Care Manual</p>
+              <a href="#" class="card-link">View</a>
+              </div>
+              </div>
+    
+              <!-- Card 3 -->
+              <div class="card">
+                  <div class="card-header">Nature Clock</div>
+                  <div class="card-body">
+                  <p class="card-text">Learn application timing using Davey Nature Clock</p>
+                  <a href="#" class="card-link">Learn</a>.</p>
+                  </div>
+                  </div>
+              
+              </div>
+              </div>
+    
+  
+         
+            
+          
         </body>
     </head>
 </html>
