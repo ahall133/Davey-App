@@ -13,3 +13,24 @@ def login(request):
 
 def logout(request):
     return render(request, 'davey_main/logout.html')
+
+def tickets(request):
+    return render(request, 'davey_main/tickets.html')
+
+def client_search(request):
+    return render(request, 'davey_main/client_search.html')
+
+def route(request):
+    return render(request, 'davey_main/route.html')
+
+def calculator(request):
+    return render(request, 'davey_main/calculator.html')
+
+def labels(request):
+    return render(request, 'davey_main/labels.html')
+
+def phcmanual(request):
+    return render(request, 'davey_main/phcmanual.html')
+    
+def natureclock(request):
+    return render(request, 'davey_main/natureclock.html')
