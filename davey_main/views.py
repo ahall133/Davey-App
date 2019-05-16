@@ -1,16 +1,21 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+#from django.contrib.auth import authenticate,login,logout
 from django.http import HttpResponse
 from django.db import models
 from .models import Employee
 # Create your views here.
 
 def home(request):
-    return render(request, 'davey_main/home.html')
+    if request.session.has_key('username'):
+        username = request.session['username']
+        office = 'STLWest 135831'
+        return render(request, 'davey_main/home.html', {'username':office})
+    else:    
+        return render(request, 'davey_main/home.html')
 
 def about(request):
     return render(request, 'davey_main/about.html')
 
-#TODO ---login form functionality working need to add error statements---
 def login(request):
 
     if request.method == 'GET':
@@ -21,19 +26,32 @@ def login(request):
         password = request.POST.get('password')
         employee = Employee.objects.filter(username=username).first()
 
-#        print(username)
-#        print(password)
-#        print(employee)
-#        print(employee.username)
+        username_error = 'Username not found'
+        password_error = 'Password not valid. Please contact your administrator.'
+        login_error = 'You are already logged in'
 
-        if employee and employee.password == password:
-            return HttpResponse('even better')
+        if request.session.has_key('username'):
+            return render(request, 'davey_main/login.html', {'login_error':login_error})
 
-        return HttpResponse('ok')
-       
+        else:
 
+            if employee and employee.password == password:
+    #           Django has a built in user authentication system. doing this like you would in flask may not be necessary. see auth url patterns in settings
+                request.session['username'] = username
+                
+                return redirect(home)
+
+            elif employee and employee.password != password:
+                return render(request, 'davey_main/login.html', {'me':username, 'password_error':password_error})
+        
+            else:
+                return render(request, 'davey_main/login.html', {'username_error':username_error, 'password_error':password_error})
         
 def logout(request):
+    try:
+        del request.session['username']
+    except:
+        pass
     return render(request, 'davey_main/logout.html')
 
 def tickets(request):

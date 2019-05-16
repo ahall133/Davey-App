@@ -22,4 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('davey_main.urls'))
 ]
+
+#TODO - add user auth urls 
  
