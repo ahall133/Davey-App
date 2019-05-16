@@ -13,6 +13,9 @@ class Client(models.Model):
     client_email = models.CharField(max_length=100)
     #insert 'arborist' foreignkey
 
+    
+
+
 class Ticket(models.Model):
     ticket_type = models.CharField(max_length=100)
     ticket_cost = models.IntegerField()
@@ -20,5 +23,15 @@ class Ticket(models.Model):
     ticket_content_image = models.ImageField()
     ticket_content = models.TextField()
     owner = models.ForeignKey(Client, on_delete=models.CASCADE)
+
+    
+
+
+class Employee(models.Model):
+    username = models.CharField(max_length=100)
+    password = models.CharField(max_length=100)
+
+    
+
     
     
