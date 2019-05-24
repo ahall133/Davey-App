@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from reportlab.pdfgen import canvas
 #from django.contrib.auth import authenticate,login,logout
 from django.http import HttpResponse
 from django.db import models
@@ -12,6 +13,10 @@ def home(request):
         return render(request, 'davey_main/home.html', {'username':office})
     else:    
         return render(request, 'davey_main/home.html')
+        
+# you probably dont need this but you have it just incase.  use {%url%} templatetag instead
+def homepage(request):
+    return redirect(home)
 
 def about(request):
     return render(request, 'davey_main/about.html')
@@ -68,6 +73,22 @@ def calculator(request):
 
 def labels(request):
     return render(request, 'davey_main/labels.html')
+    # Create the HttpResponse object with the appropriate PDF headers.
+    #response = HttpResponse(content_type='davey_main/images/Cambistat_SDS.pdf')
+    #response['Content-Disposition'] = 'attachment;filename="somefilename.pdf"'
+
+    # Create the PDF object, using the response object as its "file."
+    #p = canvas.Canvas(response)
+
+    # Draw things on the PDF. Here's where the PDF generation happens.
+    # See the ReportLab documentation for the full list of functionality.
+    #p.drawString(100, 100, "Hello world.")
+
+    # Close the PDF object cleanly, and we're done.
+    #p.showPage()
+    #p.save()
+    return response 
+
 
 def phcmanual(request):
     return render(request, 'davey_main/phcmanual.html')

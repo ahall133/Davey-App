@@ -2,9 +2,174 @@
 <!DOCTYPE html>
 <html>
     <head>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+            <style>
+            .container-fluid-head {
+            padding:20px;
+            }
+
+            .container-mine {
+            height: 45px;
+            background-color: darkseagreen;
+            }
+
+            .btn-group-wrapper {
+                height: 100vh;
+                padding-right:40px;
+                padding-left:40px;
+                background-color: darkseagreen;
+            }
+
+            .container-top {
+                height: 40px;
+                background-color: darkseagreen;
+            }
+
+            .margin {
+                background-color: darkseagreen;
+            }
+
+            .html {
+                background-color: darkseagreen;
+            }
+
+            .body {
+                background-color:darkseagreen;
+            }
+
+            </style>
+
         <body>
-            <img src= "{% static 'davey_main\images\tree-climber-silhouette-32.jpg' %}"
-            <h1>THIS PAGE UNDER CONSTRUCTION</h1>
+            <div class="container-fluid-head">
+            <div class="row">
+            <div class="col">
+                <div class="float-left">
+                    <img src= "{% static 'davey_main\images\davey_logo.jpg' %}">
+                </div>
+                </div>
+        
+            <div class="col">
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <h3>{{username}}</h3>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href={% url 'davey-home' %}>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href={% url 'davey-logout' %}>Logout</a>
+                    </ul>
+            </div>
+            </div>
+            </div>
+
+            <div class="container-top">
+                    <div class="row"></div>
+            </div>
+
+            <div class='btn-group-wrapper'>
+            <!--   <div class='btn-group'>--> 
+            
+            <!--TODO MAKE BUTTONS BIGGER-->
+            <div class="btn-group btn-block">
+                <button class="btn btn-secondary btn-lg dropdown-toggle " type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Fertilizer/Biostimulant/Soil Amendment/Growth and Fruit Regulators
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="arborgreen.pdf">Arborgreen Pro, 30-10-7</a>
+                    <a class="dropdown-item" href="#">Polyphosphite 30, 0-0-27</a>
+                    <a class="dropdown-item" href="#">Adams Earth</a>
+                    <a class="dropdown-item" href="#">Rainbow Tree Cambistat (paclobutrozol)</a>
+                    <a class="dropdown-item" href="#">Florel (clorylethylphosphonic acid)</a>
+                </div>
+            </div>
+
+            <!--</div>-->
+
+            <div class="container-mine">
+                <div class="row"></div>
+            </div>
+
+            <div class="btn-group btn-block">
+                <button class="btn btn-secondary btn-lg dropdown-toggle " type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Fungicides
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Clearys 3336WP (theophinate methyl)</a>
+                    <a class="dropdown-item" href="#">SePro CuPro 5000 (copper hydroxide)</a>
+                    <a class="dropdown-item" href="#">BASF Propiconozole</a>
+                    <a class="dropdown-item" href="#">Bayer Compass (trifloxystrobin)</a>
+                    <a class="dropdown-item" href="#">AgBio Agri-Fos (mono and d-potassium salts of Phosphorous)</a>
+                </div>
+            </div>
+
+            <div class="container-mine">
+                <div class="row"></div>
+            </div>
+
+            <div class="btn-group btn-block">
+                <button class="btn btn-secondary btn-lg dropdown-toggle " type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Insecticides (Foliar)   
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">AmVac Orthene 97 (orthene)</a>
+                    <a class="dropdown-item" href="#">Talstar (bifenthrin)</a>
+                    <a class="dropdown-item" href="#">Tengard SFR (permethrin)</a>
+                    <a class="dropdown-item" href="#">Floramite SC (bifenazate)</a>
+                    <a class="dropdown-item" href="#">Quali-Pro Avid (abamectin)</a>
+                </div>
+            </div>
+
+            <div class="container-mine">
+                <div class="row"></div>
+            </div>
+
+            <div class="btn-group btn-block">
+                <button class="btn btn-secondary btn-lg dropdown-toggle " type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Insecticides (Systemic/Microinjection)   
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Arborjet Tree-Age (ememectin benzoate)</a>
+                    <a class="dropdown-item" href="#">Arborjet Imijet (imidicloprid)</a>
+                    <a class="dropdown-item" href="#">Merit WSP (imidicloprid)</a>
+                    <a class="dropdown-item" href="#">Xytect 2F (imidicloprid)</a>
+                    <a class="dropdown-item" href="#">Safari 20SG (dinotefuran)</a>
+                </div>
+            </div>
+
+            <div class="container-mine">
+                <div class="row"></div>
+            </div>
+
+            <div class="btn-group btn-block">
+                <button class="btn btn-secondary btn-lg dropdown-toggle " type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Uncategorized/Other  
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">placeholder</a>
+                    <a class="dropdown-item" href="#">placeholder</a>
+                    <a class="dropdown-item" href="#">placeholder</a>
+                    <a class="dropdown-item" href="#">placeholder</a>
+                    <a class="dropdown-item" href="#">placeholder</a>
+                </div>
+            </div>
+        </div>
+
+      
+
+
+
+
+
+
+                  
+                                   
+            
+
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         </body>
     </head>
 </html>
+        
