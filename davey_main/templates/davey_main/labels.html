@@ -76,11 +76,11 @@
                     Fertilizer/Biostimulant/Soil Amendment/Growth and Fruit Regulators
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="arborgreen.pdf">Arborgreen Pro, 30-10-7</a>
-                    <a class="dropdown-item" href="#">Polyphosphite 30, 0-0-27</a>
-                    <a class="dropdown-item" href="#">Adams Earth</a>
-                    <a class="dropdown-item" href="#">Rainbow Tree Cambistat (paclobutrozol)</a>
-                    <a class="dropdown-item" href="#">Florel (clorylethylphosphonic acid)</a>
+                    <a class="dropdown-item" href={% url 'arborgreen-pdf' %}>Arborgreen Pro, 30-10-7</a>
+                    <a class="dropdown-item" href={% url 'polyphosphite-pdf' %}>Polyphosphite 30, 0-0-27</a>
+                    <a class="dropdown-item" href={% url 'adams-pdf' %}>Adams Earth</a>
+                    <a class="dropdown-item" href={% url 'cambistat-pdf' %}>Rainbow Tree Cambistat (paclobutrozol)</a>
+                    <a class="dropdown-item" href={% url 'florel-pdf' %}>Florel (clorylethylphosphonic acid)</a>
                 </div>
             </div>
 
@@ -108,7 +108,7 @@
             </div>
 
             <div class="btn-group btn-block">
-                <button class="btn btn-secondary btn-lg dropdown-toggle " type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Insecticides (Foliar)   
                 </button>
                 <div class="dropdown-menu">

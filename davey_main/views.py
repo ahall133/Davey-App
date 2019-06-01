@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from reportlab.pdfgen import canvas
 #from django.contrib.auth import authenticate,login,logout
-from django.http import HttpResponse
+from django.http import HttpResponse,FileResponse,Http404
 from django.db import models
 from .models import Employee
 # Create your views here.
@@ -13,11 +13,39 @@ def home(request):
         return render(request, 'davey_main/home.html', {'username':office})
     else:    
         return render(request, 'davey_main/home.html')
-        
-# you probably dont need this but you have it just incase.  use {%url%} templatetag instead
-def homepage(request):
-    return redirect(home)
 
+# PDF VIEWS         
+def arborgreen_view(request):
+    try:
+        return FileResponse(open('davey_main/static/davey_main/images/arborgreen.pdf', 'rb'), content_type='arborgreen.pdf')
+    except FileNotFoundError:
+        raise Http404()
+
+def polyphosphite_view(request):
+    try:
+        return FileResponse(open('davey_main/static/davey_main/images/polyphosphite.pdf', 'rb'), content_type= 'polyphosphite.pdf')
+    except FileNotFoundError:
+        raise Http404()    
+
+def adams_view(request):
+    try:
+        return FileResponse(open('davey_main/static/davey_main/images/adams.pdf', 'rb'), content_type= 'adams.pdf')
+    except FileNotFoundError:
+        raise Http404()    
+
+def florel_view(request):
+    try:
+        return FileResponse(open('davey_main/static/davey_main/images/florel.pdf', 'rb'), content_type= 'florel.pdf')
+    except FileNotFoundError:
+        raise Http404()    
+
+def cambistat_view(request):
+    try:
+        return FileResponse(open('davey_main/static/davey_main/images/Cambistat_SDS.pdf', 'rb'), content_type= 'cambistat.pdf')
+    except FileNotFoundError:
+        raise Http404()  
+
+# END PDF VIEWS
 def about(request):
     return render(request, 'davey_main/about.html')
 
