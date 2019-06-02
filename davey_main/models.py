@@ -3,7 +3,8 @@ from django.db import models
 class Arborist(models.Model):
     arb_name_first = models.CharField(max_length=100)
     arb_name_last = models.CharField(max_length=100)
-    abr_zip = models.IntegerField()
+    
+    
 
 class Client(models.Model):
     client_first_name = models.CharField(max_length=100)
@@ -13,7 +14,7 @@ class Client(models.Model):
     client_city = models.CharField(max_length=100)
     client_state = models.CharField(max_length=100)
     client_zip_code = models.IntegerField()
-    client_telephone = models.IntegerField()
+    client_telephone = models.CharField(max_length=20)
     client_email = models.CharField(max_length=100)
     client_rep = models.ForeignKey(Arborist, on_delete=models.CASCADE, null=True)
 

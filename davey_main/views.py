@@ -3,7 +3,8 @@ from reportlab.pdfgen import canvas
 #from django.contrib.auth import authenticate,login,logout
 from django.http import HttpResponse,FileResponse,Http404
 from django.db import models
-from .models import Employee
+from .models import Employee, Ticket
+
 # Create your views here.
 
 def home(request):
@@ -88,7 +89,26 @@ def logout(request):
     return render(request, 'davey_main/logout.html')
 
 def tickets(request):
-    return render(request, 'davey_main/tickets.html')
+    if request.method == 'GET':
+        showing = 'Showing all open tickets...'
+        tickets = Ticket.objects.all()
+        return render(request, 'davey_main/tickets.html', {'tickets':tickets, 'showing':showing})
+    if request.method == 'POST':
+        feed_box = request.POST.get('AG Pro')
+        iandt_box = request.POST.get('Inspect and Treat')
+        eab_box = request.POST.get('EAB')
+        if feed_box:
+            showing = 'Showing AG Pro...'
+            tickets = Ticket.objects.filter(ticket_type='AG Pro')
+        if iandt_box:
+            showing = 'Showing Inspection and Treatments...'
+            tickets = Ticket.objects.filter(ticket_type='I&T')
+        if eab_box:
+            showing = 'Showing Emerald Ash Borer...'
+            tickets = Ticket.objects.filter(ticket_type='EAB')
+            
+        return render(request, 'davey_main/tickets.html', {'tickets':tickets, 'showing':showing})
+        
 
 def client_search(request):
     return render(request, 'davey_main/client_search.html')
