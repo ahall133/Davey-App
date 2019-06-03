@@ -89,23 +89,55 @@ def logout(request):
     return render(request, 'davey_main/logout.html')
 
 def tickets(request):
+    showing = 'Showing all open tickets...'
+    tickets = Ticket.objects.all()
+
     if request.method == 'GET':
-        showing = 'Showing all open tickets...'
-        tickets = Ticket.objects.all()
         return render(request, 'davey_main/tickets.html', {'tickets':tickets, 'showing':showing})
     if request.method == 'POST':
-        feed_box = request.POST.get('AG Pro')
-        iandt_box = request.POST.get('Inspect and Treat')
-        eab_box = request.POST.get('EAB')
-        if feed_box:
-            showing = 'Showing AG Pro...'
-            tickets = Ticket.objects.filter(ticket_type='AG Pro')
-        if iandt_box:
-            showing = 'Showing Inspection and Treatments...'
-            tickets = Ticket.objects.filter(ticket_type='I&T')
-        if eab_box:
-            showing = 'Showing Emerald Ash Borer...'
-            tickets = Ticket.objects.filter(ticket_type='EAB')
+
+#        !!trying to figure out how to query multiple things at once and pass to template!!
+        service_type = [request.POST.get('AG Pro'), request.POST.get('Inspect and Treat'), request.POST.get('EAB')]
+        service_types = ['AG PRO', 'I&T', 'EAB']
+
+        season = request.POST.get('Spring'), request.POST.get('Summer'), request.POST.get('Fall'), request.POST.get('Winter')
+        seasons = ['Spring','Summer','Fall','Winter']
+
+        count = -1
+        filters = 0
+    
+        for i in service_type:
+            count = count + 1
+            if i == 'on':
+                filters = 1
+#                print(count)
+#                print(service_types[count])
+                tickets = Ticket.objects.filter(ticket_type=service_types[count])
+        
+        count = -1
+            
+        for i in season:
+            count = count + 1
+            if i == 'on':
+                if filters == 0:
+                    tickets = Ticket.objects.filter(ticket_season=seasons[count])
+                else:
+                    tickets = Ticket.objects.filter(ticket_type=service_types[count]).filter(ticket_season=seasons[count])
+            
+#        feed_box = request.POST.get('AG Pro')
+#        iandt_box = request.POST.get('Inspect and Treat')
+#        eab_box = request.POST.get('EAB')
+
+#        if feed_box:
+#            showing = 'Showing AG Pro...'
+#            tickets = Ticket.objects.filter(ticket_type='AG Pro')
+#        if iandt_box:
+#            showing = 'Showing Inspection and Treatments...'
+#            tickets = Ticket.objects.filter(ticket_type='I&T')
+#        if eab_box:
+#            showing = 'Showing Emerald Ash Borer...'
+#            tickets = Ticket.objects.filter(ticket_type='EAB')
+        
             
         return render(request, 'davey_main/tickets.html', {'tickets':tickets, 'showing':showing})
         
