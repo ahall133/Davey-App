@@ -108,6 +108,7 @@ def tickets(request):
         service_holder = []
         season_holder = []
         service_filters = False
+        season_filters = False
         
         
         
@@ -123,12 +124,18 @@ def tickets(request):
         for i in season:
             idx += 1
             if i == 'on':
+                season_filters = True
                 season_holder.append(seasons[idx])
 
-        #if service_filters == False:
-        print(season_holder)
-        print(service_holder)
-        tickets = Ticket.objects.filter(ticket_type__in=service_holder)
+        if service_filters and not season_filters:
+            tickets = Ticket.objects.filter(ticket_type__in=service_holder)
+        elif season_filters and not service_filters:
+            tickets = Ticket.objects.filter(ticket_season__in=season_holder)
+        elif service_filters and season_filters:
+            tickets = Ticket.objects.filter(ticket_type__in=service_holder).filter(ticket_season__in=season_holder)
+        else:
+            tickets = Ticket.objects.all()
+
         return render(request, 'davey_main/tickets.html', {'tickets':tickets, 'showing':showing})
         
 
