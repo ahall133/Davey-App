@@ -1,114 +1,114 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-    <head>
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-            <style>
 
-                .outer-container{
-                    background-color:darkseagreen;
-                }
-            
-                .container {
-                    background-color:darkseagreen;
-                    padding-left: 20px;
-                    padding-right: 20px;
-                }
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <style>
+    .outer-container {
+      background-color: darkseagreen;
+    }
 
-                .container-top-2 {
-                    background-color: darkseagreen;
-                    height: 40px;
-                }
+    .container {
+      background-color: darkseagreen;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
 
-                .container-fluid-head {
-                    padding:20px;
-                }
+    .container-top-2 {
+      background-color: darkseagreen;
+      height: 40px;
+    }
 
-                .container-bottom {
-                    height:20px;
-                    background-color: darkseagreen;
-                }
+    .container-fluid-head {
+      padding: 20px;
+    }
 
-                </style>
-        <body>
-                <div class="container-fluid-head">
-                        <div class="row">
-                        <div class="col">
-                            <div class="float-left">
-                                <img src= "{% static 'davey_main\images\davey_logo.jpg' %}">
-                            </div>
-                            </div>
-                    
-                        <div class="col">
-                            <ul class="nav justify-content-end">
-                                <li class="nav-item">
-                                    <h3>{{username}}</h3>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link active" href={% url 'davey-home' %}>Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href={% url 'davey-logout' %}>Logout</a>
-                                </ul>
-                        </div>
-                        </div>
-                        </div>
-                        </div>
-                        <div class="container-top-2">
-                                <div class="row"></div>
-                        </div>
-            <form>
-                <div class = "outer-container">
-                <div class = "container">
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="inputEmail4">First Name</label>
-                    <input type="email" class="form-control" id="inputFirstName" placeholder="John">
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="inputPassword4">Last Name</label>
-                    <input type="password" class="form-control" id="inputLastName" placeholder="Doe">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputAddress">Street Number</label>
-                  <input type="text" class="form-control" id="inputStreetNumber" placeholder="1234...">
-                </div>
-                <div class="form-group">
-                  <label for="inputAddress2">Street Name</label>
-                  <input type="text" class="form-control" id="inputStreetName" placeholder="Mayberry Street">
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="inputCity">City</label>
-                    <input type="text" class="form-control" id="inputCity" placeholder="Saint Louis">
-                  </div>
-                  <div class="form-group">
-                        <label for="inputEmail">State (abbreviation)</label>
-                            <input type="text" class="form-control" id="inputState" placeholder="MO">
-                    </div>
-                
-                  <div class="form-group col-md-2">
-                    <label for="inputZip">Zip</label>
-                    <input type="text" class="form-control" id="inputZip" placeholder="12345...">
-                  </div>
-                </div>
-                <div class="form-group">
-                        <label for="inputTele">Telephone # (inline style, no dashes)</label>
-                        <input type="text" class="form-control" id="inputTele" placeholder="3149999999">
-                      </div>
-                <div class="form-group">
-                    <label for="inputEmail">Email Address</label>
-                        <input type="text" class="form-control" id="inputEmail" placeholder="johndoe1880@gmail.com">
-                </div>
-                
-                <button type="submit" class="btn btn-primary">Search</button>
-              </form>
-            </div>
+    .container-bottom {
+      height: 20px;
+      background-color: darkseagreen;
+    }
+  </style>
+
+<body>
+  <div class="container-fluid-head">
+    <div class="row">
+      <div class="col">
+        <div class="float-left">
+          <img src="{% static 'davey_main\images\davey_logo.jpg' %}">
         </div>
-        <div class="container-bottom">
-            <div class='row'></div>
+      </div>
+
+      <div class="col">
+        <ul class="nav justify-content-end">
+          <li class="nav-item">
+            <h3>{{username}}</h3>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href={% url 'davey-home' %}>Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href={% url 'davey-logout' %}>Logout</a>
+        </ul>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="container-top-2">
+    <div class="row"></div>
+  </div>
+  <form name="form" action="." method="post"> {% csrf_token %}
+    <div class="outer-container">
+      <div class="container">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="firstname">First Name</label>
+            <input type="text" class="form-control" name='first_name' placeholder="John">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="lastname">Last Name</label>
+            <input type="text" class="form-control" name='last_name' placeholder="Doe">
+          </div>
         </div>
-        </body>
-    </head>
+        <div class="form-group">
+          <label for="inputAddress">Street Number</label>
+          <input type="number" class="form-control" name='street_number' placeholder="1234...">
+        </div>
+        <div class="form-group">
+          <label for="inputAddress2">Street Name</label>
+          <input type="text" class="form-control" name='street_name' placeholder="Mayberry Street">
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputCity">City</label>
+            <input type="text" class="form-control" name='city' placeholder="Saint Louis">
+          </div>
+          <div class="form-group">
+            <label for="inputState">State (abbreviation)</label>
+            <input type="text" class="form-control" name='state' placeholder="MO">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="inputZip">Zip</label>
+            <input type="number" class="form-control" name='zip' placeholder="12345...">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputTele">Telephone # (inline style, no dashes)</label>
+          <input type="number" class="form-control" name='telephone' placeholder="3149999999">
+        </div>
+        <div class="form-group">
+          <label for="inputEmail">Email Address</label>
+          <input type="text" class="form-control" name='email' placeholder="johndoe1880@gmail.com">
+        </div>
+
+        <input type="submit">
+  </form>
+  </div>
+  </div>
+  <div class="container-bottom">
+    <div class='row'></div>
+  </div>
+</body>
+</head>
+
 </html>

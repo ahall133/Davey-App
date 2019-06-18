@@ -140,7 +140,30 @@ def tickets(request):
         
 
 def client_search(request):
-    return render(request, 'davey_main/client_search.html')
+    if request.method == 'GET':
+        return render(request, 'davey_main/client_search.html')
+    if request.method == 'POST':
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        street_num = request.POST.get('street_number')
+        street = request.POST.get('street_name')
+        city = request.POST.get('city')
+        state = request.POST.get('state')
+        zip_code = request.POST.get('zip')
+        telephone = request.POST.get('telephone')
+        email = request.POST.get('email')
+
+        print(first_name)
+        print(last_name)
+        print(street_num)
+        print(street)
+        print(city)
+        print(state)
+        print(zip_code)
+        print(telephone)
+        print(email)
+        
+        return HttpResponse('ok')
 
 def route(request):
     return render(request, 'davey_main/route.html')

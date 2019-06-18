@@ -1,10 +1,122 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-    <head>
-        <body>
-            <img src= "{% static 'davey_main\images\tree-climber-silhouette-32.jpg' %}"
-            <h1>THIS PAGE UNDER CONSTRUCTION</h1>
-        </body>
-    </head>
-</html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        .container-fluid-head {
+            padding: 20px;
+        }
+
+        .container-mine {
+            height: 45px;
+            background-color: darkseagreen;
+        }
+
+        .btn-group-wrapper {
+            height: 100vh;
+            padding-right: 40px;
+            padding-left: 40px;
+            background-color: darkseagreen;
+        }
+
+        .container-top {
+            height: 40px;
+            background-color: darkseagreen;
+        }
+
+        .margin {
+            background-color: darkseagreen;
+        }
+
+        .html {
+            background-color: darkseagreen;
+        }
+
+        .body {
+            background-color: darkseagreen;
+        }
+    </style>
+
+<body>
+    <div class="container-fluid-head">
+        <div class="row">
+            <div class="col">
+                <div class="float-left">
+                    <img src="{% static 'davey_main\images\davey_logo.jpg' %}">
+                </div>
+            </div>
+
+            <div class="col">
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <h3>{{username}}</h3>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href={% url 'davey-home' %}>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href={% url 'davey-logout' %}>Logout</a>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-mine">
+        <div class="row"></div>
+    </div>
+    <h1>Please select a product...</h1>
+
+    <form name="form" method="post">{% csrf_token %}
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">Fungicides/Bactericides</label>
+            <select class="form-control" id="exampleFormControlSelect1">
+                <option>No Fungicide Selected</option>
+                <option>Clearys 3336WP (theophinate methyl)</option>
+                <option>SePro CuPro 5000 (copper hydroxide)</option>
+                <option>BASF Propiconozole</option>
+                <option>Bayer Compass (trifloxystrobin)</option>
+                <option>AgBio Agri-Fos (mono and d-potassium salts of Phosphorous)</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">Insecticides (Foliar)</label>
+            <select class="form-control" id="exampleFormControlSelect1">
+                <option>No Insecticide Selected</option>
+                <option>AmVac Orthene 97 (orthene)</option>
+                <option>Talstar (bifenthrin)</option>
+                <option>Tengard SFR (permethrin)</option>
+                <option>Floramite SC (bifenazate)</option>
+                <option>Quali-Pro Avid (abamectin)</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">Insecticides (Systemic/Microinjection)</label>
+            <select class="form-control" id="exampleFormControlSelect1">
+                <option>No Insecticide Selected</option>
+                <option>Arborjet Tree-Age (ememectin benzoate)</option>
+                <option>Arborjet Imijet (imidicloprid)</option>
+                <option>Merit WSP (imidicloprid)</option>
+                <option>Xytect 2F (imidicloprid)</option>
+                <option>Safari 20SG (dinotefuran)</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">Fertilizer/Biostimulant/Soil Amendment/Growth and Fruit
+                Regulators</label>
+            <select class="form-control" id="exampleFormControlSelect1">
+                <option>No Fert/Bio/GR Selected</option>
+                <option>Arborgreen Pro, 30-10-7</option>
+                <option>Polyphosphite 30, 0-0-27</option>
+                <option>Adams Earth</option>
+                <option>Rainbow Tree Cambistat (paclobutrozol)</option>
+                <option>Florel (clorylethylphosphonic acid)</option>
+            </select>
+        </div>
+        <input type="submit" value="NEXT -->">
+    </form>
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%"
+            aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
