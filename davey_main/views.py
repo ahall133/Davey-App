@@ -4,7 +4,8 @@ from reportlab.pdfgen import canvas
 from django.http import HttpResponse,FileResponse,Http404
 from django.db import models
 from .models import Employee, Ticket, Client
-from .utils import product_calculator
+from .utils import product_calculator,product_id,rate
+
 
 def home(request):
     if request.session.has_key('username'):
@@ -241,7 +242,15 @@ def calculator(request):
         else:
             print(product)
             mix = product_calculator(product,carrier)
-            selection = mix
+            real_product = product_id(product)
+            r_rate = rate(product,carrier)
+            selection = """<div class= "alert alert-success" role="alert">
+                        <h4 class="alert-heading"><u>{}</u></h4>
+                        <p><h6>Mix rate: {} <h6></p>
+                        <hr>
+                        <p class="mb-0"><b>{}</b></p>
+                        </div>""".format(real_product,r_rate,mix)
+
             return render(request, 'davey_main/calculator.html',{'selection':selection})
 
 def carrier(request):
