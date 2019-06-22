@@ -1,4 +1,5 @@
 from django.urls import path
+from django.views.generic import RedirectView
 from . import views
 
 urlpatterns = [
@@ -9,6 +10,7 @@ urlpatterns = [
     path('adams_view/',views.adams_view, name="adams-pdf"),
     path('cambistat_view/',views.cambistat_view, name="cambistat-pdf"),
     path('florel_view/',views.florel_view, name='florel-pdf'),
+
 
     #other urls
     path('client_view/', views.client_view, name='client-view'),

@@ -182,10 +182,9 @@ def client_search(request):
         print(client_holder)
         
         #rudimentary search -- need to add 
-        if clients:
-            clients = Client.objects.filter(client_first_name__in=client_holder).filter(client_last_name__in=client_holder)
-            if not clients:
-                clients = Client.objects.filter(client_first_name__in=client_holder)
+    
+        clients = Client.objects.filter(client_first_name__in=client_holder)
+        
         print(first_name)
         print(last_name)
         print(clients)

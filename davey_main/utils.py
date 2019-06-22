@@ -22,6 +22,23 @@ def product_calculator(product, carrier):
         carrier = str(carrier)
         mix = application.format(r_rate+ ' ounces',carrier+" gallons" )
         return mix
+    
+    if product == 'cambistat':
+        ratio = carrier/11
+        r_rate = ratio*1
+        r_rate = str(r_rate)
+        carrier = str(carrier)
+        mix = application.format(r_rate+' gallons',carrier+" gallons")
+        return mix
+
+    if product == 'florel':
+        ratio = carrier/10
+        r_rate = ratio/4
+        r_rate = str(r_rate)
+        carrier = str(carrier)
+        mix = application.format(r_rate+' gallons',carrier+" gallons")
+        return mix
+        
 
 def product_id(product):
     if product == 'agpro':
@@ -36,6 +53,14 @@ def product_id(product):
         real_product = 'Adams Earth Biostimulant'
         return real_product
 
+    if product == 'cambistat':
+        real_product = 'Cambistat Tree Growth Regulator'
+        return real_product
+
+    if product == 'florel':
+        real_produt = 'Florel Growth Regulator'
+        return real_produt
+
 def rate(product, carrier):
     if product == 'agpro':
         product_amount = "15lbs per 100 gallons"
@@ -47,6 +72,14 @@ def rate(product, carrier):
 
     if product == 'adams':
         product_amount = "64 ounces per 100 gallons"
+        return product_amount
+
+    if product == 'cambistat':
+        product_amount = "1 gallon per 11 gallons"
+        return product_amount
+
+    if product == 'florel':
+        product_amount = '1 quart per 10 gallons (2.5 gallons per 100 gallons)'
         return product_amount
 
 
