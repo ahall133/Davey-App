@@ -37,6 +37,11 @@
         .body {
             background-color: darkseagreen;
         }
+
+        .form-container {
+            margin-left:20px;
+            
+        }
     </style>
 
 <body>
@@ -66,57 +71,68 @@
     <div class="container-mine">
         <div class="row"></div>
     </div>
-    <h1>Please select a product...</h1>
+    
 
+    <div class = 'form-container'>
+        <h1>{{selection}}</h1>
     <form name="form" method="post">{% csrf_token %}
         <div class="form-group">
             <label for="exampleFormControlSelect1">Fungicides/Bactericides</label>
-            <select class="form-control" id="exampleFormControlSelect1">
-                <option>No Fungicide Selected</option>
-                <option>Clearys 3336WP (theophinate methyl)</option>
-                <option>SePro CuPro 5000 (copper hydroxide)</option>
-                <option>BASF Propiconozole</option>
-                <option>Bayer Compass (trifloxystrobin)</option>
-                <option>AgBio Agri-Fos (mono and d-potassium salts of Phosphorous)</option>
+            <select class="form-control" name='fungicide' id="exampleFormControlSelect1">
+                <option value='none'>No Fungicide Selected</option>
+                <option value='clearys'>Clearys 3336WP (theophinate methyl)</option>
+                <option value='cupro'>SePro CuPro 5000 (copper hydroxide)</option>
+                <option value='propiconozole'>BASF Propiconozole</option>
+                <option value='compass'>Bayer Compass (trifloxystrobin)</option>
+                <option value='agrifos'>AgBio Agri-Fos (mono and d-potassium salts of Phosphorous)</option>
             </select>
         </div>
         <div class="form-group">
             <label for="exampleFormControlSelect1">Insecticides (Foliar)</label>
-            <select class="form-control" id="exampleFormControlSelect1">
-                <option>No Insecticide Selected</option>
-                <option>AmVac Orthene 97 (orthene)</option>
-                <option>Talstar (bifenthrin)</option>
-                <option>Tengard SFR (permethrin)</option>
-                <option>Floramite SC (bifenazate)</option>
-                <option>Quali-Pro Avid (abamectin)</option>
+            <select class="form-control" name="insecticide" id="exampleFormControlSelect1">
+                <option value='none'>No Insecticide Selected</option>
+                <option value='orthene'>AmVac Orthene 97 (orthene)</option>
+                <option value='bifenthrin'>Talstar (bifenthrin)</option>
+                <option value='permethrin'>Tengard SFR (permethrin)</option>
+                <option value='floramite'>Floramite SC (bifenazate)</option>
+                <option value='abamectin'>Quali-Pro Avid (abamectin)</option>
             </select>
         </div>
         <div class="form-group">
             <label for="exampleFormControlSelect1">Insecticides (Systemic/Microinjection)</label>
-            <select class="form-control" id="exampleFormControlSelect1">
-                <option>No Insecticide Selected</option>
-                <option>Arborjet Tree-Age (ememectin benzoate)</option>
-                <option>Arborjet Imijet (imidicloprid)</option>
-                <option>Merit WSP (imidicloprid)</option>
-                <option>Xytect 2F (imidicloprid)</option>
-                <option>Safari 20SG (dinotefuran)</option>
+            <select class="form-control" name='systemic' id="exampleFormControlSelect1">
+                <option value='none'>No Insecticide Selected</option>
+                <option value='treeage'>Arborjet Tree-Age (ememectin benzoate)</option>
+                <option value='imijet'>Arborjet Imijet (imidicloprid)</option>
+                <option value='merit'>Merit WSP (imidicloprid)</option>
+                <option value='xytect'>Xytect 2F (imidicloprid)</option>
+                <option value='safari'>Safari 20SG (dinotefuran)</option>
             </select>
         </div>
         <div class="form-group">
             <label for="exampleFormControlSelect1">Fertilizer/Biostimulant/Soil Amendment/Growth and Fruit
                 Regulators</label>
-            <select class="form-control" id="exampleFormControlSelect1">
-                <option>No Fert/Bio/GR Selected</option>
-                <option>Arborgreen Pro, 30-10-7</option>
-                <option>Polyphosphite 30, 0-0-27</option>
-                <option>Adams Earth</option>
-                <option>Rainbow Tree Cambistat (paclobutrozol)</option>
-                <option>Florel (clorylethylphosphonic acid)</option>
+            <select class="form-control" name='fert' id="exampleFormControlSelect1">
+                <option value='none'>No Fert/Bio/GR Selected</option>
+                <option value='agpro'>Arborgreen Pro, 30-10-7</option>
+                <option value='polyphos'>Polyphosphite 30, 0-0-27</option>
+                <option value='adams'>Adams Earth</option>
+                <option value='cambistat'>Rainbow Tree Cambistat (paclobutrozol)</option>
+                <option value='florel'>Florel (clorylethylphosphonic acid)</option>
             </select>
         </div>
+
+        <form>
+            <div class="form-group">
+                <label for="carrier">Amount of carrier (in gallons)</label>
+                <input type="number" class="form-control" id="carrier" name='carrier'
+                    placeholder="Enter carrier amount">
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="sticker">
+                <label class="form-check-label" for="inlineCheckbox3">I will be using a surfactant</label>
+            </div>
         <input type="submit" value="NEXT -->">
-    </form>
-    <div class="progress">
-        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%"
-            aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </form>
     </div>
+    

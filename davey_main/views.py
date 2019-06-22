@@ -3,9 +3,8 @@ from reportlab.pdfgen import canvas
 #from django.contrib.auth import authenticate,login,logout
 from django.http import HttpResponse,FileResponse,Http404
 from django.db import models
-from .models import Employee, Ticket
-
-# Create your views here.
+from .models import Employee, Ticket, Client
+from .utils import product_calculator
 
 def home(request):
     if request.session.has_key('username'):
@@ -45,8 +44,8 @@ def cambistat_view(request):
         return FileResponse(open('davey_main/static/davey_main/images/Cambistat_SDS.pdf', 'rb'), content_type= 'cambistat.pdf')
     except FileNotFoundError:
         raise Http404()  
-
 # END PDF VIEWS
+
 def about(request):
     return render(request, 'davey_main/about.html')
 
@@ -96,7 +95,6 @@ def tickets(request):
         return render(request, 'davey_main/tickets.html', {'tickets':tickets, 'showing':showing})
     if request.method == 'POST':
 
-#        !!trying to figure out how to query multiple things at once and pass to template!!
         service = [request.POST.get('AG Pro'), request.POST.get('Inspect and Treat'), request.POST.get('EAB')]
         services = ['AG PRO', 'I&T', 'EAB']
 
@@ -135,6 +133,7 @@ def tickets(request):
             tickets = Ticket.objects.filter(ticket_type__in=service_holder).filter(ticket_season__in=season_holder)
         else:
             tickets = Ticket.objects.all()
+        print(tickets)
 
         return render(request, 'davey_main/tickets.html', {'tickets':tickets, 'showing':showing})
         
@@ -142,7 +141,9 @@ def tickets(request):
 def client_search(request):
     if request.method == 'GET':
         return render(request, 'davey_main/client_search.html')
+
     if request.method == 'POST':
+        #need to implement search of multiple columns
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
         street_num = request.POST.get('street_number')
@@ -153,24 +154,101 @@ def client_search(request):
         telephone = request.POST.get('telephone')
         email = request.POST.get('email')
 
+        client_holder = []
+
+        if first_name:
+            client_holder.append(first_name)
+            Client.objects.filter(client_first_name__in=client_holder)
+        if last_name:
+            client_holder.append(last_name)
+        if street_num:
+            client_holder.append(street_num)
+        if street:
+            client_holder.append(street)
+        if city:
+            client_holder.append(city)
+        if state:
+            client_holder.append(state)
+        if zip_code:
+            client_holder.append(zip_code)
+        if telephone:
+            client_holder.append(telephone)
+        if email:
+            client_holder.append(email)
+        
+
+
+        print(client_holder)
+        
+        #rudimentary search -- need to add 
+        if clients:
+            clients = Client.objects.filter(client_first_name__in=client_holder).filter(client_last_name__in=client_holder)
+            if not clients:
+                clients = Client.objects.filter(client_first_name__in=client_holder)
         print(first_name)
         print(last_name)
-        print(street_num)
-        print(street)
-        print(city)
-        print(state)
-        print(zip_code)
-        print(telephone)
-        print(email)
-        
-        return HttpResponse('ok')
+        print(clients)
+
+
+        return render(request, 'davey_main/client_view.html', {'clients':clients})
+
+def client_view(request):
+    return HttpResponse('ok')
 
 def route(request):
     return render(request, 'davey_main/route.html')
 
 def calculator(request):
-    return render(request, 'davey_main/calculator.html')
+    if request.method == 'GET':
+        selection = 'Please select a single product...'
+        return render(request, 'davey_main/calculator.html', {'selection':selection})
+    if request.method == 'POST':
+        product_li = []
+        product = ''
 
+        fungicide = request.POST.get('fungicide')
+        if fungicide != 'none':
+            product_li.append(fungicide)
+            product = fungicide
+
+        insecticide = request.POST.get('insecticide')
+        if insecticide != 'none':
+            product_li.append(insecticide)
+            product = insecticide
+        
+        systemic = request.POST.get('systemic')
+        if systemic != 'none':
+            product_li.append(systemic)
+            product = systemic
+
+        fert = request.POST.get('fert')
+        if fert != 'none':
+            product_li.append(fert)
+            product = fert
+        
+        carrier = request.POST.get('carrier')
+        if carrier != '':
+            carrier = int(carrier)
+        else:
+            carrier = 0
+
+        #sticker = request.POST.get('sticker')
+        #print(sticker)
+
+        if len(product_li) > 1 or carrier == 0:
+            selection = 'Please select only a single product and be sure to enter a carrier amount'
+            return render(request, 'davey_main/calculator.html',{'selection':selection})
+        else:
+            print(product)
+            mix = product_calculator(product,carrier)
+            selection = mix
+            return render(request, 'davey_main/calculator.html',{'selection':selection})
+
+def carrier(request):
+    if request.method == 'GET':
+        return render(request, 'davey_main/carrier.html')
+    if request.method == 'POST':
+        return HttpResponse('ok')
 def labels(request):
     return render(request, 'davey_main/labels.html')
     # Create the HttpResponse object with the appropriate PDF headers.

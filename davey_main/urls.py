@@ -11,6 +11,8 @@ urlpatterns = [
     path('florel_view/',views.florel_view, name='florel-pdf'),
 
     #other urls
+    path('client_view/', views.client_view, name='client-view'),
+    path('carrier/', views.carrier, name='carrier'),
     path('about/', views.about, name='davey-about'),
     path('logout/', views.logout, name='davey-logout'),
     path('login/', views.login, name= 'davey-login'),

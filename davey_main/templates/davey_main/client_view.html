@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        .container-fluid-head {
+            padding: 20px;
+        }
+
+        .container-mine {
+            height: 45px;
+            background-color: darkseagreen;
+        }
+
+        .btn-group-wrapper {
+            height: 100vh;
+            padding-right: 40px;
+            padding-left: 40px;
+            background-color: darkseagreen;
+        }
+
+        .container-top {
+            height: 40px;
+            background-color: darkseagreen;
+        }
+
+        .margin {
+            background-color: darkseagreen;
+        }
+
+        .html {
+            background-color: darkseagreen;
+        }
+
+        .body {
+            background-color: darkseagreen;
+        }
+    </style>
+
+<body>
+    <div class="container-fluid-head">
+        <div class="row">
+            <div class="col">
+                <div class="float-left">
+                    <img src="{% static 'davey_main\images\davey_logo.jpg' %}">
+                </div>
+            </div>
+
+            <div class="col">
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <h3>{{username}}</h3>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href={% url 'davey-home' %}>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href={% url 'davey-logout' %}>Logout</a>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-mine">
+        <div class="row"></div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Client ID</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Street #</th>
+                <th scope="col">Street Name</th>
+                <th scope="col">City</th>
+                <th scope="col">State</th>
+                <th scope="col">Zip</th>
+                <th scope="col">Telephone #</th>
+                <th scope="col">Email</th>
+                <th scope="col">Arborist</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for client in clients %}
+            <tr>
+                <td>{{client.id}}</td>
+                <td>{{client.client_first_name}}</td>
+                <td>{{client.client_last_name}}</td>
+                <td>{{client.client_street_number}}</td>
+                <td>{{client.client_street_name}}</td>
+                <td>{{client.client_city}}</td>
+                <td>{{client.client_state}}</td>
+                <td>{{client.client_zip_code}}</td>
+                <td>{{client.client_telephone}}</td>
+                <td>{{client.client_email}}</td>
+                <td>{{client.client_rep.arb_name_last}}, {{client.client_rep.arb_name_first}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
